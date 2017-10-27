@@ -42,7 +42,7 @@ export default {
   data: function() {
     // boundingClientRect Type DOMRect
     return {
-      bufferSize: 512,
+      bufferSize: 2048,
       samplingFreq: 44100,
       startIndex: 0,
       rawSamples: [],
@@ -102,5 +102,4 @@ export default {
   flex-direction: row;
   align-items: center;
 }
-
 </style>

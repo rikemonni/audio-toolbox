@@ -16,12 +16,8 @@ export default {
   },
   computed: {
     styleObject: function() {
-      const color = `hsla(${ 130 }, 30%, 50%, 1)`;
       const height = `${this.sample * 100}%`;
-      // todo: sample -> height
-      // console.log("height", height, this.sample);
       return {
-        "background-color": color,
         "height": height 
       };
     }
@@ -36,6 +32,7 @@ export default {
   position: relative;
   width: 1px;
   bottom: 0;
+  background-color: hsla(130, 30%, 50%, 1);
 }
 
 </style>

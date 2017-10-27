@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <trend></trend>
+    <nav-bar></nav-bar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-import Trend from "./Trend.vue";
+import NavBar from "./NavBar.vue";
 
 export default {
   name: 'app',
   components: {
-    trend: Trend
+    "nav-bar": NavBar,
   }
 }
 
@@ -24,7 +25,7 @@ body {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Monaco";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
