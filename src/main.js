@@ -3,22 +3,27 @@ import VueRouter from 'vue-router'
 
 import App from './App.vue'
 
-import Trend from './Trend.vue'
+import Signal from './Signal.vue'
 import Spectrum from './Spectrum.vue'
+import Spectrogram from './Spectrogram.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "*",
-    redirect: "/time"
+    redirect: "/signal"
   },
   {
-    path: "/time",
-    component: Trend
+    path: "/signal",
+    component: Signal
   },
   {
-    path: "/freq",
+    path: "/spectrogram",
+    component: Spectrogram
+  },
+  {
+    path: "/spectrum",
     component: Spectrum
   }
 ];

@@ -80,10 +80,12 @@ export default {
     // Get element's width and height
     // Todo: update on resize
     this.boundingClientRect = this.$el.getBoundingClientRect();
-    
+    window.addEventListener("resize", e => {
+      this.boundingClientRect = this.$el.getBoundingClientRect();    
+    });
     // We'd like to display each sample ->
     // this.samplingFreq / this.boundingClientRect.width > 60
-    // if it is, use this.boundingClientRect.width as bufferWidth
+    // if true, use this.boundingClientRect.width as bufferWidth
 
     // Use the mic input for the trend data
     updateSamplesFromAudioIn(this.bufferSize, this.updateSamples);
@@ -93,6 +95,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .trend {
   width: 100%;
   height: 330px;
@@ -101,5 +104,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex: 1;
 }
+
 </style>

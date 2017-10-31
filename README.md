@@ -1,6 +1,6 @@
-# realtime-trend
+# αἴσθησις aisthēsis
 
-> A Vue.js project
+> See the sound.
 
 ## Build Setup
 

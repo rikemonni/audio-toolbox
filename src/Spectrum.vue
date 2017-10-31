@@ -1,26 +1,22 @@
 <template>
-  <div class="spectrum">
-    spectrum here
+  <div class="container">
+    spectrum
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'spectrum',
+  name: "spectrum",
 }
 
 </script>
 
 <style lang="scss">
-.spectrum {
+
+.container {
   width: 100%;
-  height: 330px;
-  box-sizing: border-box;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex: 1;
 }
 
 </style>
