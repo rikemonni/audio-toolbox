@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <canvas class="spectrogram" width="1280" height="660px"></canvas>
+    <grid-overlay></grid-overlay>
   </div>
 </template>
 
@@ -9,12 +10,12 @@
 const Spectrogram = require("spectrogram");
 const chroma = require("chroma-js");
 
+import GridOverlay from "./GridOverlay.vue";
+
 export default {
   name: "spectrogram",
-  data: function() {
-    return {
-      width: 0,
-    };
+  components: {
+    "grid-overlay": GridOverlay
   },
   mounted: function() {
     const spectro = Spectrogram(this.$el.querySelector("canvas"), {
@@ -44,27 +45,20 @@ export default {
         return colors;
       }
     });
-    const audioContext = new AudioContext();
 
-    this.width = this.$el.getBoundingClientRect().width;
-
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(stream => {
-        const input = audioContext.createMediaStreamSource(stream);
-        const analyser = audioContext.createAnalyser();
+    this.getMediaStremSourceAsync()
+      .then(input => {
+        const analyser = this.audioContext.createAnalyser();
       
         analyser.smoothingTimeConstant = 0;
         analyser.fftSize = 2048;
-      
+        // to do, handle disconnects on unmount
         input.connect(analyser);
       
-        spectro.connectSource(analyser, audioContext);
+        spectro.connectSource(analyser, this.audioContext);
         spectro.start();
-      })
-      .catch(error => {
-        console.log("Error", error);
       });
-    }
+  }
 }
 
 </script>

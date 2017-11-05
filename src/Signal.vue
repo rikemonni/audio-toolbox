@@ -1,60 +1,34 @@
 <template>
-  <div class="trend">
-    <template v-for="n in boundingClientRect.width">
-      <sample :key="n" :sample="aggregateSamples[n]"></sample>
-    </template>
+  <div class="content">
+    <div class="trend">
+      <template v-for="n in boundingClientRect.width">
+        <sample :key="n" :sample="aggregateSamples[n]"></sample>
+      </template>
+    </div>
+    <grid-overlay></grid-overlay>
   </div>
 </template>
 
 <script>
 
 import Sample from "./Sample.vue";
-
-function updateSamplesFromAudioIn(bufferSize, cb) {
-  navigator.mediaDevices.getUserMedia({audio: true})
-    .then(MeadiaStream => {
-      var audioCtx = new AudioContext();
-      var source = audioCtx.createMediaStreamSource(MeadiaStream);
-
-      // Create a ScriptProcessorNode with a bufferSize of 4096 and a single input and output channel
-      var scriptNode = audioCtx.createScriptProcessor(bufferSize, 1, 1);
-      source.connect(scriptNode);
-      // In order to get onaudioprocess firing scriptNode's output needs to be connected
-      scriptNode.connect(audioCtx.destination);
-
-      scriptNode.onaudioprocess = audioProcessingEvent => {
-        var inputBuffer = audioProcessingEvent.inputBuffer;
-        var channel = inputBuffer.getChannelData(0);
-        cb(channel);
-      }
-    })
-    .catch(e => {
-      console.error("nevermind.. :smoke:", e);
-    });
-}
-
+import GridOverlay from "./GridOverlay.vue";
 
 export default {
   name: 'trend',
   components: {
-    "sample": Sample
+    "sample": Sample,
+    "grid-overlay": GridOverlay
   },
   data: function() {
-    // boundingClientRect Type DOMRect
     return {
       bufferSize: 2048,
       samplingFreq: 44100,
       startIndex: 0,
       rawSamples: [],
       boundingClientRect: {
-        bottom: 0,
         height: 0,
-        left: 0,
-        right: 0,
-        top: 0,
         width: 0,
-        x: 0,
-        y: 0,
       }
     }
   },
@@ -87,14 +61,38 @@ export default {
     // this.samplingFreq / this.boundingClientRect.width > 60
     // if true, use this.boundingClientRect.width as bufferWidth
 
-    // Use the mic input for the trend data
-    updateSamplesFromAudioIn(this.bufferSize, this.updateSamples);
+    this.getMediaStremSourceAsync()
+      .then(source => {
+        // Create a ScriptProcessorNode with a bufferSize of 4096 and a single input and output channel
+        var scriptNode = this.audioContext.createScriptProcessor(this.bufferSize, 1, 1);
+        source.connect(scriptNode);
+        // In order to get onaudioprocess firing scriptNode's output needs to be connected
+        scriptNode.connect(this.audioContext.destination);
+
+        scriptNode.onaudioprocess = audioProcessingEvent => {
+          var inputBuffer = audioProcessingEvent.inputBuffer;
+          var channel = inputBuffer.getChannelData(0);
+          this.updateSamples(channel);
+        }
+      })
+      .catch(e => {
+        console.error("nevermind.. :smoke:", e);
+      });
+
   }
 }
 
 </script>
 
 <style lang="scss">
+
+.content {
+  width: 100%;
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
 .trend {
   width: 100%;
@@ -104,7 +102,6 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  flex: 1;
 }
 
 </style>

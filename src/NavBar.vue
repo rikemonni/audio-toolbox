@@ -1,8 +1,9 @@
 <template>
   <div class="nav">
+    <router-link to="/meter" class="nav-item">meter</router-link>
     <router-link to="/signal" class="nav-item active">signal</router-link>
     <router-link to="/spectrogram" class="nav-item">spectrogram</router-link>
-    <router-link to="/spectrum" class="nav-item">spectrum</router-link>
+    <!-- <router-link to="/spectrum" class="nav-item">spectrum</router-link> -->
   </div>
 </template>
 
@@ -40,7 +41,7 @@ export default {
   color: #2c3e50;
   text-decoration: none;
   line-height: 30px;
-  border-left: solid 3px darken(#CFCFCF, 10%);
+  border-left: solid 1px darken(#CFCFCF, 15%);
 
   &:hover {
     background-color: darken(#CFCFCF, 15%);
@@ -48,7 +49,8 @@ export default {
 }
 
 .nav-item.router-link-active {
-  background-color: darken(#CFCFCF, 10%);
+  background-color: darken(#CFCFCF, 20%);
+  color: #2c3e50;
   text-decoration: underline;
 }
 
