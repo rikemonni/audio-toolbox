@@ -1,9 +1,9 @@
 <template>
   <div class="nav">
-    <router-link to="/meter" class="nav-item">meter</router-link>
-    <router-link to="/signal" class="nav-item active">signal</router-link>
+    <!-- <router-link to="/meter" class="nav-item">meter</router-link> -->
+    <!-- <router-link to="/signal" class="nav-item active">signal</router-link> -->
     <router-link to="/spectrogram" class="nav-item">spectrogram</router-link>
-    <!-- <router-link to="/spectrum" class="nav-item">spectrum</router-link> -->
+    <router-link to="/scope" class="nav-item">scope</router-link>
   </div>
 </template>
 
@@ -18,7 +18,6 @@ export default {
 <style lang="scss">
 
 .nav {
-  background-color: #CFCFCF;
   position: relative;
   top: 0;
   height: 30px;
@@ -31,7 +30,9 @@ export default {
   color: hsl(130, 30%, 20%);
   font-weight: bold;
   padding: 0;
-  border-bottom: solid 5px lighten(#2c3e50, 30%);
+  border-bottom: solid 1px darken(#42b983, 10%);
+  user-select: none;
+  background-color: #42b983;  
 }
 
 .nav-item {
@@ -41,17 +42,19 @@ export default {
   color: #2c3e50;
   text-decoration: none;
   line-height: 30px;
-  border-left: solid 1px darken(#CFCFCF, 15%);
+  border-left: solid 1px darken(#42b983, 15%);
 
   &:hover {
-    background-color: darken(#CFCFCF, 15%);
+    background-color: lighten(#42b983, 3%);
   }
 }
 
 .nav-item.router-link-active {
-  background-color: darken(#CFCFCF, 20%);
-  color: #2c3e50;
+  background-color: darken(#42b983, 5%);
   text-decoration: underline;
+  &:hover {
+    background-color: lighten(#42b983, 3%);
+  }
 }
 
 </style>

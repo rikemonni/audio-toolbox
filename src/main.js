@@ -10,6 +10,7 @@ import Signal from './Signal.vue'
 // import Spectrum from './Spectrum.vue'
 import Spectrogram from './Spectrogram.vue'
 import Meter from './Meter.vue'
+import ScopePage from './ScopePage.vue'
 
 Vue.use(VueRouter);
 Vue.use(AudioInputPlugin);
@@ -17,7 +18,7 @@ Vue.use(AudioInputPlugin);
 const routes = [
   {
     path: "*",
-    redirect: "/signal"
+    redirect: "/scope"
   },
   {
     path: "/signal",
@@ -34,7 +35,12 @@ const routes = [
   {
     path: "/meter",
     component: Meter
+  },
+  {
+    path: "/scope",
+    component: ScopePage
   }
+
 ];
 
 const router = new VueRouter({

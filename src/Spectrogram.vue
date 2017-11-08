@@ -45,19 +45,14 @@ export default {
         return colors;
       }
     });
-
+    
     this.getMediaStremSourceAsync()
-      .then(input => {
-        const analyser = this.audioContext.createAnalyser();
-      
-        analyser.smoothingTimeConstant = 0;
-        analyser.fftSize = 2048;
-        // to do, handle disconnects on unmount
-        input.connect(analyser);
-      
-        spectro.connectSource(analyser, this.audioContext);
+      .then(source => {
+        // Wait to make sure that the analyser is connected to the mediastream. prolly not needed?
+        console.log("Connecting spectro.");
+        spectro.connectSource(this.analyser, this.audioContext);
         spectro.start();
-      });
+    });
   }
 }
 
