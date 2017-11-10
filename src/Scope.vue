@@ -94,7 +94,7 @@ export default {
   align-items: center;
   align-content: space-around;
 }
-
+// needed ?
 #canvas {
   position: relative;
   display: inline-block;
