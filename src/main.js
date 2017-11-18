@@ -11,6 +11,7 @@ import Spectrogram from './Spectrogram.vue'
 import Meter from './Meter.vue'
 import ScopePage from './ScopePage.vue'
 import MIDIMonitor from './MIDIMonitor.vue'
+import TapTempo from './TapTempo.vue'
 
 Vue.use(VueRouter);
 Vue.use(AudioInputPlugin);
@@ -40,7 +41,10 @@ const routes = [
     path: "/midi-monitor",
     component: MIDIMonitor
   },
-
+  {
+    path: "/tap-tempo",
+    component: TapTempo
+  },
 ];
 
 const router = new VueRouter({

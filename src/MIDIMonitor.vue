@@ -4,23 +4,23 @@
     <table class="messages table-striped">
       <thead>
         <tr>
-          <th>Timestamp</th>
-          <th>Manufacturer</th>
           <th>Name</th>
           <th>Status</th>
           <th>Control Number</th>
           <th>Value</th>
+          <th>Manufacturer</th>
+          <th>Timestamp</th>
         </tr>
       </thead>
       <tbody>
         <template v-for="message in messages">
           <tr :key="message.timestamp">
-            <td> {{ message.timestamp }}</td>
-            <td>{{ message.manufacturer }}</td>
             <td>{{ message.name }}</td>
             <td>{{ message.status }}</td>
             <td>{{ message.ctrlNum }}</td>
             <td>{{ message.value }}</td>
+            <td>{{ message.manufacturer }}</td>
+            <td> {{ message.timestamp }}</td>
           </tr>
         </template>
       </tbody>
@@ -52,30 +52,6 @@ export default {
           ctrlNum: "CC12",
           value: 127
         },
-        {
-          timestamp: Date.now() + 20000,
-          manufacturer: "MIDI Man",
-          name: "name",
-          status: "ok",
-          ctrlNum: "CC12",
-          value: 127
-        },
-        {
-          timestamp: Date.now() + 30000,
-          manufacturer: "MIDI Man",
-          name: "name",
-          status: "ok",
-          ctrlNum: "CC12",
-          value: 127
-        },
-        {
-          timestamp: Date.now() + 40000,
-          manufacturer: "MIDI Man",
-          name: "name",
-          status: "ok",
-          ctrlNum: "CC12",
-          value: 127
-        }
       ]
     }
   },
@@ -94,23 +70,27 @@ export default {
     }
   },
   mounted: function() {
-      navigator.requestMIDIAccess()
-      .then(access => {
-        // Get lists of available MIDI controllers
-        const inputs = access.inputs.values();
-        const outputs = access.outputs.values();
-        for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
-          input.value.onmidimessage = this.onMIDIMessage;
-        }
-      });
+      try {
+        navigator.requestMIDIAccess()
+        .then(access => {
+          // Get lists of available MIDI controllers
+          const inputs = access.inputs.values();
+          const outputs = access.outputs.values();
+          for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+            input.value.onmidimessage = this.onMIDIMessage;
+          }
+        });
+      } catch (e) {
+        console.error("Your browser doesn't support MIDI access :(");
+      }
 
       // Remove older messages periodically
-      // setTimeout(() => {
-      //   const curTime = Date.now();
-      //   this.messages = this.messages.filter(message => {
-      //     message.timestamp + this.timeAlive < curTime;
-      //   });
-      // }, this.timeAlive / 2);
+      setTimeout(() => {
+        const curTime = Date.now();
+        this.messages = this.messages.filter(message => {
+          message.timestamp + this.timeAlive > curTime;
+        });
+      }, this.timeAlive / 2);
   }
 }
 
@@ -137,6 +117,10 @@ export default {
 
   thead {
     font-weight: bold;
+    text-shadow: 0 0 5px darken(#2c3e50, 10%);
+    th {
+      text-decoration: underline;
+    }
   }
 
   border-collapse: collapse;

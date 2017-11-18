@@ -5,6 +5,7 @@
     <router-link to="/scope" class="nav-item">scope</router-link>
     <router-link to="/spectrum" class="nav-item active">spectrum</router-link>
     <router-link to="/midi-monitor" class="nav-item">MIDI monitor</router-link>
+    <router-link to="/tap-tempo" class="nav-item">tap tempo</router-link>
   </div>
 </template>
 
