@@ -25,16 +25,22 @@ body {
 }
 
 #app {
+  --dark: #2c3e50;
+  --green: #42b984;
+
   font-family: "Monaco";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #2c3e50;
+  background-color: var(--dark);
+  color: var(--green);
+
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
 }
 
 h1, h2 {
@@ -52,6 +58,6 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: var(--green);
 }
 </style>

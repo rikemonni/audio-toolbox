@@ -50,7 +50,7 @@ export default {
       const sliceWidth = canvas.width / this.bufferLength;
       var x = 0;
       for (var i = 0; i < this.bufferLength; i++) {
-        var v = this.gain * dataArray[i] / 128.0;
+        var v = dataArray[i] / 128.0;
         var y = v * (canvas.height / 2) + this.yPos;
 
         i === 0 ? canvasCtx.moveTo(x, y) : canvasCtx.lineTo(x, y);

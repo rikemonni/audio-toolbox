@@ -37,41 +37,20 @@ export default {
       const canvas = this.$el.querySelector("#spectrum")
       const canvasCtx = canvas.getContext("2d");
 
-      this.analyser.getByteTimeDomainData(dataArray);
+      this.analyser.getByteFrequencyData(dataArray);
       canvasCtx.lineWidth = 2;
-      // canvasCtx.strokeStyle = "#42b983";
-
       canvasCtx.beginPath();
-
-      // canvasCtx.fillStyle = "#42b983";
+      canvasCtx.fillStyle = "#2c3e50";
       canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
-
-      var barWidth = (canvas.width / BUFFER_LENGTH) * 2.5;
+      const barWidth = (canvas.width / BUFFER_LENGTH);
       var barHeight;
       var x = 0;
+      canvasCtx.fillStyle = '#42b984';
       for(var i = 0; i < BUFFER_LENGTH; i++) {
-        barHeight = dataArray[i]/2;
-        console.log(barHeight);
-        canvasCtx.fillStyle = 'rgb(' + (barHeight+100) + ',50,50)';
-        canvasCtx.fillRect(x, canvas.height - barHeight/2, barWidth, barHeight);
-
+        barHeight = dataArray[i] * 4;
+        canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight);
         x += barWidth + 1;
       }
-      // Draw the contents of the audio buffer in slices
-      // const sliceWidth = canvas.width / this.bufferLength;
-      // var x = 0;
-      // for (var i = 0; i < this.bufferLength; i++) {
-      //   var v = this.gain * dataArray[i] / 128.0;
-      //   var y = v * (canvas.height / 2) + this.yPos;
-
-      //   i === 0 ? canvasCtx.moveTo(x, y) : canvasCtx.lineTo(x, y);
-
-      //   x += sliceWidth;
-      // }
-      // canvasCtx.lineTo(canvas.width, canvas.height / 2);
-
-      // canvasCtx.stroke(); // Finish the line to mid right
-
       requestAnimationFrame(this.drawCanvas);
     }
   },

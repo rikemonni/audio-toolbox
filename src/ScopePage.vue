@@ -51,7 +51,7 @@ export default {
   width: 100%;
   line-height: 2em;
   box-sizing: border-box;
-  color: #2c3e50;
+  color: var(--dark);
   user-select: none;
 }
 
@@ -70,7 +70,7 @@ export default {
   font-family: "Monaco";
   height: 30px;
   box-sizing: border-box;
-  color: #2c3e50;
+  color: var(--dark);
 
   // Reset button el styles
   &:focus {
@@ -95,7 +95,7 @@ export default {
   border: solid 3px #42b983;
   border-radius: 2px;
   box-sizing: border-box;
-  color: #2c3e50;
+  color: var(--dark);
   font-weight: bold;
 
   &:focus {
