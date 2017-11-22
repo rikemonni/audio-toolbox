@@ -6,6 +6,7 @@
     <router-link to="/spectrum" class="nav-item active">spectrum</router-link>
     <router-link to="/midi-monitor" class="nav-item">MIDI monitor</router-link>
     <router-link to="/tap-tempo" class="nav-item">tap tempo</router-link>
+    <router-link to="/signal-generator" class="nav-item">signal generator</router-link>
   </div>
 </template>
 
@@ -22,7 +23,7 @@ export default {
 .nav {
   position: relative;
   top: 0;
-  height: 30px;
+  height: 35px;
   width: 100vw;
   font-size: 13px;
   display: flex;
@@ -32,19 +33,20 @@ export default {
   color: hsl(130, 30%, 20%);
   font-weight: bold;
   padding: 0;
-  border-bottom: solid 1px darken(#42b983, 10%);
   user-select: none;
-  background-color: var(--green);
+  background-image: linear-gradient(0deg, darken(#42b983, 5%), #42b983);
 }
 
 .nav-item {
   flex: 1;
   margin: 0;
   height: 100%;
+  box-sizing: border-box;
   color: var(--dark);
   text-decoration: none;
-  line-height: 30px;
-  border-left: solid 1px darken(#42b983, 15%);
+  border: solid 1px #42b983;
+  line-height: 33px;
+  font-weight: bold;
 
   &:hover {
     background-color: lighten(#42b983, 3%);
@@ -54,9 +56,6 @@ export default {
 .nav-item.router-link-active {
   background-color: darken(#42b983, 5%);
   text-decoration: underline;
-  &:hover {
-    background-color: lighten(#42b983, 3%);
-  }
 }
 
 </style>

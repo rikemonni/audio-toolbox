@@ -12,6 +12,7 @@ import Meter from './Meter.vue'
 import ScopePage from './ScopePage.vue'
 import MIDIMonitor from './MIDIMonitor.vue'
 import TapTempo from './TapTempo.vue'
+import SignalGenerator from './SignalGenerator.vue'
 
 Vue.use(VueRouter);
 Vue.use(AudioInputPlugin);
@@ -45,6 +46,10 @@ const routes = [
     path: "/tap-tempo",
     component: TapTempo
   },
+  {
+    path: "/signal-generator",
+    component: SignalGenerator
+  }
 ];
 
 const router = new VueRouter({
