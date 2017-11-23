@@ -2,7 +2,6 @@
     <div class="tap-tempo-container">
         <div class="tap-tempo"
             :class="tapTempoClasses"
-
             @click="clicked">
             {{ bpm }} bpm
         </div>

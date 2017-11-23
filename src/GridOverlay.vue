@@ -11,7 +11,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $line-color: rgba(66, 185, 131, 0.3);
 
 .grid-overlay {

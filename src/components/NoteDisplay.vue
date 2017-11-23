@@ -14,41 +14,48 @@
 <script>
 
 export default {
-  name: "note-display",
-  props: ["freq"],
-  computed: {
-    note: function() {
-      const over = notes.findIndex(note => {
-        return note.freq > this.freq;
-      });
-
-      const difUnder = notes[over - 1].freq - this.freq;
-      const difOver = this.freq - notes[over].freq;
-      let index;
-      if (difUnder > difOver) {
-        index = over - 1; 
-      } else {
-        index = over;
+    name: "note-display",
+    props: {
+        "freq": {
+            type: Number,
+            required: true
+        }
+  },
+  data: function () {
+      return {
+          note: {
+              note: undefined,
+              freq: undefined,
+          },
+          noteIndex: undefined,
+      };
+  },
+  watch: {
+      freq: function(newFreq) {
+          this.updateState(newFreq);
       }
-      return notes[index];
-    },
-    noteIndex: function() {
-      const over = notes.findIndex(note => {
-        return note.freq > this.freq;
-      });
-
-      const difUnder = notes[over - 1].freq - this.freq;
-      const difOver = this.freq - notes[over].freq;
-      let index;
-      if (difUnder > difOver) {
-        index = over - 1; 
-      } else {
-        index = over;
-      }
-      return index;
-    }
+  },
+  mounted: function() {
+      this.updateState(this.freq);
   },
   methods: {
+    updateState: function(newFreq) {
+        const firstOver = notes.findIndex(note => {
+            return note.freq > this.freq;
+        });
+
+        const difUnder = notes[firstOver - 1].freq - this.freq;
+        const difOver = this.freq - notes[firstOver].freq;
+        let index;
+        if (difUnder > difOver) {
+            index = firstOver - 1; 
+        } else {
+            index = firstOver;
+        }
+
+        this.note = notes[index];
+        this.noteIndex = index;
+    },
     changeNote: function(event) {
       event.preventDefault();
       let index = this.noteIndex;

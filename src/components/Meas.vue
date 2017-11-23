@@ -72,6 +72,7 @@ export default {
   color: var(--dark);
 }
 .unit {
+  margin-left: 0.5em;
   width: 40px;
 }
 </style>
