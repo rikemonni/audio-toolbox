@@ -28,7 +28,8 @@ body {
   --dark: #2c3e50;
   --green: #42b984;
 
-  font-family: "Monaco";
+  font-family: Monaco, "Lucida Console", monospace;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

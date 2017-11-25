@@ -29,6 +29,7 @@
 </template>
 
 <script>
+const MAX_MSG_AMNT = 100;
 
 export default {
   name: 'midi-monitor',
@@ -37,28 +38,18 @@ export default {
       timeAlive: 5000, // message expiration time
       messages: [
         {
-          timestamp: Date.now(),
-          manufacturer: "MIDI Man",
-          name: "name",
-          status: "ok",
-          ctrlNum: "CC12",
-          value: 127
-        },
-        {
-          timestamp: Date.now() + 10000,
-          manufacturer: "MIDI Man",
-          name: "name",
-          status: "ok",
-          ctrlNum: "CC12",
-          value: 127
-        },
+          name: "START",
+          status: "TWEAKING",
+          ctrlNum: "KNOBS",
+          value: "OK?",
+          manufacturer: "",
+          timestamp: ">9000"
+        }
       ]
     }
   },
   methods: {
     onMIDIMessage: function(msg) {
-      // console.log(msg);
-
       this.messages.unshift({
         timestamp: Date.now(),
         manufacturer: msg.currentTarget.manufacturer,
@@ -67,6 +58,9 @@ export default {
         ctrlNum: msg.data[1],
         value: msg.data[2]
       });
+      if (this.messages.length >= MAX_MSG_AMNT) {
+        this.messages.pop();
+      }
     }
   },
   mounted: function() {
@@ -83,14 +77,6 @@ export default {
       } catch (e) {
         console.error("Your browser doesn't support MIDI access :(");
       }
-
-      // Remove older messages periodically
-      setTimeout(() => {
-        const curTime = Date.now();
-        this.messages = this.messages.filter(message => {
-          message.timestamp + this.timeAlive > curTime;
-        });
-      }, this.timeAlive / 2);
   }
 }
 
