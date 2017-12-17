@@ -7,6 +7,7 @@
     <router-link to="/midi-monitor" class="nav-item">MIDI monitor</router-link>
     <router-link to="/tap-tempo" class="nav-item">tap tempo</router-link>
     <router-link to="/signal-generator" class="nav-item">signal generator</router-link>
+    <!-- <router-link to="/tuner" class="nav-item">tuner</router-link> -->
   </div>
 </template>
 
@@ -54,7 +55,8 @@ export default {
 }
 
 .nav-item.router-link-active {
-  background-color: darken(#42b983, 5%);
+  background-color: darken(#42b983, 10%);
+  text-shadow: 1px 1px 0 #42b983;
   text-decoration: underline;
 }
 

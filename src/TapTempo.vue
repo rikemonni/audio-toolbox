@@ -6,11 +6,11 @@
           {{ bpm }} bpm
       </div>
       <div class="time-sig-container">
-          <div class="time-sig--description" title="specify how many beats are to be contained in each measure (bar) and which note value is equivalent to one beat.">
+          <!-- <div class="time-sig--description" title="specify how many beats are to be contained in each measure (bar) and which note value is equivalent to one beat.">
           Time Signature
-          </div>
+          </div> -->
           <div class="time-sig">
-              <input
+              <!-- <input
                 type="number"
                 v-model.number="beatAmnt"
                 :min="beatMin"
@@ -25,24 +25,24 @@
                 :max="noteValMax"
                 class="note-value-to-beat"
                 @wheel.prevent="changeNoteVal">
-            <hr>
+            <hr> -->
             <div class="bar">
-            <div class="bar-ticks">
-                <span
-                    v-for="i in beatAmnt"
-                    :key="i"
-                    :class="i <= curIndex || curIndex === 0 ? 'active-tick' : 'inactive-tick'">
-                    I
-                </span>
-            </div>
-            <div class="measurement-ticks">
-                <span
-                    class="tick"
-                    v-for="i in noteValToBeat"
-                    :key="i">
-                    I
-                </span>
-            </div>
+                <div class="bar-ticks">
+                    <span
+                        v-for="i in beatAmnt"
+                        :key="i"
+                        :class="i <= curIndex || curIndex === 0 ? 'active-tick' : 'inactive-tick'">
+                        I
+                    </span>
+                </div>
+                <!-- <div class="measurement-ticks">
+                    <span
+                        class="tick"
+                        v-for="i in noteValToBeat"
+                        :key="i">
+                        I
+                    </span>
+                </div> -->
             </div>
         </div>
     </div>

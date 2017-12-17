@@ -1,6 +1,6 @@
 {
-  "name": "realtime-trend",
-  "description": "A Vue.js project",
+  "name": "audio-toolbox",
+  "description": "Collection of basic audio utilities.",
   "version": "1.0.0",
   "author": "Riku Nieminen <riku.nieminen@gmail.com>",
   "private": true,
