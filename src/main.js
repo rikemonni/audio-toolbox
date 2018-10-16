@@ -9,12 +9,15 @@ import Vuex from 'vuex';
 // Router View Components
 import Spectrum from './Spectrum.vue'
 import Spectrogram from './Spectrogram.vue'
-import Meter from './Meter.vue'
 import ScopePage from './ScopePage.vue'
 import MIDIMonitor from './MIDIMonitor.vue'
 import TapTempo from './TapTempo.vue'
 import SignalGenerator from './SignalGenerator.vue'
-import Tuner from './Tuner.vue'
+
+// Finalize:
+// import Meter from './Meter.vue'
+// import Tuner from './Tuner.vue'
+import FullPageComponents from './FullPageComponents.vue'
 
 Vue.use(VueRouter);
 Vue.use(AudioInputPlugin);
@@ -34,10 +37,6 @@ const routes = [
     component: Spectrum
   },
   {
-    path: "/meter",
-    component: Meter
-  },
-  {
     path: "/scope",
     component: ScopePage
   },
@@ -54,9 +53,17 @@ const routes = [
     component: SignalGenerator
   },
   {
-    path: "/tuner",
-    component: Tuner
-  }
+    path: "/full",
+    component: FullPageComponents
+  },
+//   {
+//     path: "/meter",
+//     component: Meter
+//   },
+//   {
+//     path: "/tuner",
+//     component: Tuner
+//   }
 ];
 
 const router = new VueRouter({

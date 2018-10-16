@@ -1,13 +1,11 @@
 <template>
   <div class="nav">
-    <!-- <router-link to="/meter" class="nav-item">meter</router-link> -->
     <router-link to="/spectrogram" class="nav-item">spectrogram</router-link>
     <router-link to="/scope" class="nav-item">scope</router-link>
     <router-link to="/spectrum" class="nav-item active">spectrum</router-link>
     <router-link to="/midi-monitor" class="nav-item">MIDI monitor</router-link>
     <router-link to="/tap-tempo" class="nav-item">tap tempo</router-link>
     <router-link to="/signal-generator" class="nav-item">signal generator</router-link>
-    <!-- <router-link to="/tuner" class="nav-item">tuner</router-link> -->
   </div>
 </template>
 

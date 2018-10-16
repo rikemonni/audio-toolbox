@@ -55,7 +55,6 @@ oscillator.connect(gainNode);
 gainNode.connect(audioCtx.destination);
 oscillator.start();
 gainNode.gain.value = 0;
-// const speedOfSound = 345;
 
 import Display from './components/Display.vue'
 import Btn from './components/Btn.vue';
@@ -114,7 +113,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
   margin: auto;
   flex: 1;
