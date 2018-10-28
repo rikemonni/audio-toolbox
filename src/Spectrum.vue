@@ -9,7 +9,7 @@
 
 import GridOverlay from "./GridOverlay.vue";
 
-const BUFFER_LENGTH = 2048;
+const BUFFER_LENGTH = 1024;
 const dataArray = new Uint8Array(BUFFER_LENGTH);
 
 export default {
@@ -27,9 +27,9 @@ export default {
   },
   data: function() {
     return {
-      timespan: 1280,
-      bufferLength: 2048,
-      height: 660,
+      timespan: BUFFER_LENGTH / 2,
+      bufferLength: BUFFER_LENGTH,
+      height: 620,
     };
   },
   methods: {
@@ -49,7 +49,7 @@ export default {
       for(var i = 0; i < BUFFER_LENGTH; i++) {
         barHeight = dataArray[i] * 4;
         canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight);
-        x += barWidth + 1;
+        x += barWidth;
       }
       requestAnimationFrame(this.drawCanvas);
     }
@@ -57,8 +57,6 @@ export default {
   mounted: function() {
     const canvas = this.$el.querySelector("#spectrum");
     const canvasCtx = canvas.getContext("2d");
-
-    // canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 
     canvasCtx.fillStyle = "#2c3e50";
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);

@@ -22,11 +22,9 @@ export default {
     };
   },
   mounted: function() {
-    console.log("mounted, size?", this.$el.offsetWidth, this.$el.offsetHeight);
     this.width = this.$el.offsetWidth;
     this.height = this.$el.offsetHeight;
     addEventListener("resize", () => {
-      console.log("resizing", this.$el.offsetWidth, this.$el.offsetHeight);
       this.width = this.$el.offsetWidth;
       this.height = this.$el.offsetHeight;
     }); 
