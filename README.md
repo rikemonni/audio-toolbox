@@ -1,6 +1,8 @@
-# αἴσθησις aisthēsis
+# audio-toolbox
 
-> See the sound.
+a web-audio experiment.
+constains audio visualizations and audio related utilities.
+made with Vuejs, vuex & vue-router.
 
 ## Build Setup
 
